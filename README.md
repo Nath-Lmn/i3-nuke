@@ -3,4 +3,4 @@ a list of all the commands requiered to nuke a Nix OS session when someone unfor
 (for epita students only)
 
 
-![Image Error]("image github")
+![Funny picture :D](image%20github.png)
