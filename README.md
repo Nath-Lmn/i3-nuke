@@ -4,15 +4,13 @@
 
 ![Funny picture :D](image%20github.png)
 
-
-
 # prank.sh — blagues de session i3 (tradition d'école)
 
 Si quelqu'un oublie de verrouiller sa session (`$mod+Escape` + `i3lock`), la tradition
 autorise les blagues. Règles : **on ne touche jamais au travail/code/git**, tout est
 annulable en quelques secondes, et on **assume son coup**.
 
->  Chaque modification de config est consignée dans **`~/prank_journal.txt`** avec
+> 📋 Chaque modification de config est consignée dans **`~/prank_journal.txt`** avec
 > son antidote — la victime peut donc tout annuler elle-même. C'est le fair-play.
 
 ## Installation
@@ -24,6 +22,7 @@ chmod +x prank.sh
 ./prank.sh rotate         # direct en CLI
 ./prank.sh undo rotate    # annule une blague
 ./prank.sh undo-all       # annule tout
+```
 
 ⚠️ Lance le script dans un terminal **de la session graphique de la victime**.
 Les blagues marquées `[rc]` ne s'arment que dans les **nouveaux** terminaux :
