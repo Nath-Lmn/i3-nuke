@@ -8,7 +8,7 @@ a list of all the commands requiered to nuke a Nix OS session when someone unfor
 
 ### how to use : 
 copy the "prank.sh" file, then use the following commands : 
-``` Bash
+``` Shell
 chmod +x prank.sh
 
 ./prank.sh                      # interactive menue ( easiest way )
