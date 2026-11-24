@@ -6,7 +6,6 @@
 
 
 
-```
 # prank.sh — blagues de session i3 (tradition d'école)
 
 Si quelqu'un oublie de verrouiller sa session (`$mod+Escape` + `i3lock`), la tradition
@@ -25,7 +24,6 @@ chmod +x prank.sh
 ./prank.sh rotate         # direct en CLI
 ./prank.sh undo rotate    # annule une blague
 ./prank.sh undo-all       # annule tout
-```
 
 ⚠️ Lance le script dans un terminal **de la session graphique de la victime**.
 Les blagues marquées `[rc]` ne s'arment que dans les **nouveaux** terminaux :
