@@ -4,3 +4,17 @@ a list of all the commands requiered to nuke a Nix OS session when someone unfor
 
 
 ![Funny picture :D](image%20github.png)
+
+
+### how to use : 
+copy the "prank.sh" file, then use the following commands : 
+``` Bash
+chmod +x prank.sh
+
+./prank.sh                      # interactive menue ( easiest way )
+./prank.sh rotate               # CLI
+./prank.sh undo rotate          # undo the rotate 
+./prank.sh wallpaper https://example.com/meme.png  # wallpaper
+./prank.sh all                  # full combo without risk
+./prank.sh undo-all             # complete reset
+```
