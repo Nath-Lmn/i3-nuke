@@ -14,7 +14,7 @@ chmod +x prank.sh
 ./prank.sh                      # interactive menue ( easiest way )
 ./prank.sh rotate               # CLI
 ./prank.sh undo rotate          # undo the rotate 
-./prank.sh wallpaper https://example.com/meme.png  # wallpaper
+./prank.sh wallpaper https://example.com/meme.png  # replace the wallpaper with the given picture ;)
 ./prank.sh all                  # full combo without risk
 ./prank.sh undo-all             # complete reset
 ```
