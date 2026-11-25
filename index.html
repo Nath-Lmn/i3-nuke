@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unité de Confloose I3-NUKE, notice de mise en service</title>
+<meta name="description" content="Notice de mise en service de l'Unité de Confloose I3-NUKE (réf. I3N-016, rév. C) : prank.sh, seize blagues pour sessions i3 non verrouillées, toutes annulables.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ebe4d0">
+<script>document.documentElement.className += " js";</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='7' width='12' height='8' fill='%2317140f'/%3E%3Cpath d='M5 7V4a3 3 0 0 1 6 0' fill='none' stroke='%23d23a17' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap">
+<style>
+/* ==== 1. Tokens ==== */
+:root {
+  --paper: #ebe4d0;            /* sheet */
+  --desk: #d3cab2;             /* what shows through the punch holes */
+  --ink: #17140f;              /* black ink */
+  --ink-soft: rgb(23 20 15 / .76);
+  --rule: rgb(23 20 15 / .42);
+  --hair: rgb(23 20 15 / .2);
+  --ink-tint: rgb(23 20 15 / .06);
+  --red: #d23a17;              /* spot red: strokes, stamp, large type */
+  --red-deep: #a92e10;         /* same red, deepened for small text (>= 4.5:1 on paper) */
+  --red-tint: rgb(210 58 23 / .11);
+  --red-mid: rgb(210 58 23 / .3);
+  --sans: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --margin-w: 168px;
+  --gutter: 28px;
+}
+
+/* ==== 2. Base ==== */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--desk); color: var(--ink); font: 17px/1.5 var(--sans); -webkit-text-size-adjust: 100%; scroll-padding-top: 16px; }
+body { margin: 0; background: var(--desk); }
+a { color: var(--ink); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--red-deep); }
+code, kbd, pre { font-family: var(--mono); }
+code { font-size: .88em; font-weight: 500; background: var(--ink-tint); padding: 0 .25em; }
+p { margin: 0 0 .8em; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+.noscript { margin: 0; padding: 10px 16px; background: var(--ink); color: var(--paper); font: .8125rem/1.4 var(--mono); }
+.noscript a { color: var(--paper); }
+html:not(.js) .js-only, html:not(.js) .copy, html:not(.js) .tools { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--ink); color: var(--paper); padding: 10px 14px; font: 600 .875rem var(--mono); }
+.skip:focus { top: 8px; }
+.label { font: 600 .75rem/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+
+/* ==== 3. Sheet, punch holes, crop and registration marks ==== */
+.sheet { position: relative; max-width: 1060px; margin: 0 auto; background: var(--paper); border-inline: 1px solid var(--rule); padding: 0 16px; }
+.crop { position: absolute; width: 18px; height: 18px; border: 0 solid var(--ink); pointer-events: none; }
+.crop.tl { top: 8px; left: 8px; border-top-width: 1px; border-left-width: 1px; }
+.crop.tr { top: 8px; right: 8px; border-top-width: 1px; border-right-width: 1px; }
+.crop.bl { bottom: 8px; left: 8px; border-bottom-width: 1px; border-left-width: 1px; }
+.crop.br { bottom: 8px; right: 8px; border-bottom-width: 1px; border-right-width: 1px; }
+.reg { position: absolute; left: 50%; width: 22px; height: 22px; margin-left: -11px; pointer-events: none; }
+.reg.top { top: 6px; }
+.reg.bot { bottom: 6px; }
+.reg .s { fill: none; stroke: var(--ink); stroke-width: 1; }
+
+/* ==== 4. Index tabs ==== */
+.tabs { position: sticky; top: 0; z-index: 30; background: var(--ink); }
+.tabs ol { position: relative; list-style: none; margin: 0; padding: 0 40px 0 0; display: flex; overflow-x: auto; scrollbar-width: thin; scroll-padding-inline: 4px 44px; }
+.tabs a { position: relative; display: block; padding: 11px 12px; color: var(--paper); text-decoration: none; white-space: nowrap; font: 500 .75rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; border-right: 1px solid rgb(235 228 208 / .3); }
+.tabs a[aria-current="true"] { background: var(--red-deep); color: var(--paper); font-weight: 700; }
+.tabs a:hover { color: var(--paper); text-decoration: underline; }
+.tabs a:focus-visible { outline-offset: -3px; outline-color: var(--paper); }
+.tabs .abbr { display: none; }
+.tabs.more::after { content: "→"; position: absolute; right: 0; top: 0; bottom: 0; width: 36px; display: grid; place-items: center; padding-left: 12px; pointer-events: none; color: var(--ink); font: 700 1rem var(--mono);
+  background: linear-gradient(var(--paper), var(--paper)) right / 24px 100% no-repeat, repeating-linear-gradient(-45deg, var(--ink) 0 3px, var(--red-deep) 3px 6px) left / 12px 100% no-repeat; }
+
+/* ==== 5. Folio = margin column + reading column ==== */
+.folio { display: grid; grid-template-columns: minmax(0, 1fr); padding: 40px 0 36px; border-top: 1px solid var(--rule); }
+.margin { font: .75rem/1.5 var(--mono); color: var(--ink-soft); margin-bottom: 18px; }
+.margin-in { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.secno { font: 600 1.5rem/1 var(--mono); color: var(--ink); margin: 0; }
+.margin .kicker { margin: 0; text-transform: uppercase; letter-spacing: .12em; }
+.note { flex-basis: 100%; margin: 6px 0 0; padding-top: 8px; border-top: 1px solid var(--hair); }
+.note b { color: var(--red-deep); letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.mlegend { flex-basis: 100%; margin: 8px 0 0; padding: 8px 0 0; border-top: 1px solid var(--hair); display: grid; gap: 6px; }
+.mlegend div { display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: start; }
+.mlegend dt, .mlegend dd { margin: 0; }
+h2 { font: 700 clamp(2rem, 6vw, 3rem)/.95 var(--sans); letter-spacing: -.015em; text-transform: uppercase; margin: 0 0 20px; padding-top: 10px; border-top: 5px solid var(--ink); }
+h2::after { content: ""; display: block; margin-top: 10px; border-top: 1px solid var(--ink); }
+h3 { font: 700 1.25rem/1.1 var(--sans); letter-spacing: .01em; text-transform: uppercase; margin: 0 0 6px; }
+.lead { font-size: 1.15rem; line-height: 1.45; }
+
+/* ==== 6. Buttons and copy components ==== */
+.btn { display: inline-block; padding: 13px 18px; border: 2px solid var(--ink); background: transparent; color: var(--ink); font: 600 .8125rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn:hover { background: var(--red-deep); border-color: var(--red-deep); color: var(--paper); }
+.copy { font: 600 .75rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; background: var(--ink); color: var(--paper); border: 0; padding: 0 14px; min-height: 44px; cursor: pointer; }
+.copy:hover { background: var(--red-deep); }
+.copy[data-state="done"] { background: var(--red-deep); }
+.copy.mini { min-height: 28px; padding: 0 9px; margin-top: 6px; display: block; }
+.cmd { display: flex; align-items: stretch; border: 2px solid var(--ink); margin: 10px 0 0; }
+.cmd pre { flex: 1; min-width: 0; margin: 0; padding: 11px 12px; background: var(--ink-tint); font: 500 .875rem/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* ==== 7. Cover ==== */
+.cover { position: relative; padding: 44px 0 40px; }
+.refblock { display: grid; grid-template-columns: repeat(2, 1fr); border: 2px solid var(--ink); margin: 0; }
+.refblock div { padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+.refblock div:nth-child(odd) { border-right: 1px solid var(--rule); }
+.refblock div:nth-last-child(-n+2) { border-bottom: 0; }
+.refblock dt { font: 500 .6875rem/1.2 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+.refblock dd { margin: 2px 0 0; font: 700 1rem/1.2 var(--mono); }
+.cover .kicker { margin: 26px 0 0; font: 500 .8125rem/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.cover h1 { font: 700 clamp(2.6rem, 10.5vw, 6.6rem)/.88 var(--sans); letter-spacing: -.025em; text-transform: uppercase; margin: 14px 0 14px; padding-top: .14em; }
+.cover h1 span { display: block; }
+.cover .subtitle { margin: 0; padding-left: 14px; border-left: 8px solid var(--red); font: 500 1.2rem/1.3 var(--mono); }
+.cover-fig { display: grid; gap: 22px; margin-top: 30px; }
+.drawing { position: relative; margin: 0; border: 2px solid var(--ink); padding: 10px 10px 0; background: var(--paper); }
+.plan-wrap { position: relative; overflow: hidden; }
+.drawing svg.plan { display: block; width: 100%; height: auto; }
+.drawing figcaption { display: grid; grid-template-columns: auto 1fr auto; margin: 10px -10px 0; border-top: 2px solid var(--ink); font: .75rem/1.3 var(--mono); }
+.drawing figcaption span { padding: 6px 10px; border-right: 1px solid var(--rule); }
+.drawing figcaption span:last-child { border-right: 0; }
+.stamp { position: absolute; left: 2%; bottom: 11%; width: min(262px, 56%); transform: rotate(-9deg); pointer-events: none; }
+.stamp svg { display: block; width: 100%; height: auto; }
+.legend { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; align-content: start; }
+.legend li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; }
+.legend .ltr { display: grid; place-items: center; width: 34px; height: 34px; border: 2px solid var(--ink); border-radius: 50%; font: 700 1rem var(--mono); }
+.legend b { display: block; font: 700 1.05rem/1.2 var(--sans); text-transform: uppercase; }
+.legend span.d { font-size: .9375rem; color: var(--ink-soft); line-height: 1.35; display: block; }
+.cover .lead { margin: 28px 0 22px; max-width: 40em; }
+.cover-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ==== 8. Contents ==== */
+.toc, .toc ol { list-style: none; margin: 0; padding: 0; }
+.toc a { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; text-decoration: none; }
+.toc .t { font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.toc .dots { flex: 1; min-width: 16px; border-bottom: 2px dotted var(--rule); transform: translateY(-4px); }
+.toc .pg { font: 600 .9375rem var(--mono); }
+.toc .sub a { padding-left: 24px; padding-block: 3px; font-size: .9375rem; }
+.toc .sub .t { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--ink-soft); }
+.toc a:hover .t, .toc a:focus-visible .t { text-decoration: underline; text-decoration-thickness: 2px; }
+
+/* ==== 9. Notices (ANSI style) ==== */
+.notices { display: grid; gap: 16px; }
+.notice { border: 2px solid var(--ink); background: var(--paper); break-inside: avoid; }
+.notice::before { content: ""; display: block; height: 9px; border-bottom: 2px solid var(--ink); background: repeating-linear-gradient(-45deg, var(--ink) 0 7px, transparent 7px 14px); }
+.notice-h { display: flex; align-items: center; gap: 10px; padding: 7px 12px; font: 700 .8125rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; border-bottom: 2px solid var(--ink); }
+.notice-h .num { margin-left: auto; font-weight: 500; letter-spacing: .06em; }
+.ic { width: 18px; height: 18px; flex: none; }
+.notice-b { padding: 12px 14px 4px; }
+.notice-danger { border-color: var(--red-deep); }
+.notice-danger::before { background: repeating-linear-gradient(-45deg, var(--red-deep) 0 7px, transparent 7px 14px); border-bottom-color: var(--red-deep); }
+.notice-danger .notice-h { background: var(--red-deep); color: var(--paper); border-bottom-color: var(--red-deep); }
+.notice-caution .notice-h { background: var(--ink); color: var(--paper); }
+.notice-note::before { display: none; }
+.notice-note { border-width: 1px; border-color: var(--rule); }
+.notice-note .notice-h { border-bottom: 1px solid var(--rule); }
+
+/* ==== 10. Procedure ==== */
+.proc { list-style: none; margin: 22px 0 0; padding: 0; }
+.step { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 0 12px; padding: 16px 0 18px; border-top: 1px solid var(--rule); }
+.step-no { font: 600 1.4rem/1 var(--mono); }
+.step p { margin: 0; }
+
+/* ==== 11. Tables shared ==== */
+table { border-collapse: collapse; width: 100%; }
+caption { text-align: left; }
+th { text-align: left; }
+thead th { font: 600 .75rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 8px 8px; border-bottom: 2px solid var(--ink); border-top: 1px solid var(--ink); }
+td, tbody th { padding: 10px 8px; border-bottom: 1px solid var(--hair); vertical-align: top; font-weight: 400; }
+
+/* ==== 12. Parts list ==== */
+.tools { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: end; margin: 0 0 14px; }
+.tools label { display: block; }
+.tools input[type="search"] { width: 100%; min-width: 220px; font: 500 .9375rem var(--mono); padding: 10px 12px; border: 2px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink); }
+.tools input::placeholder { color: var(--ink-soft); }
+.search { flex: 1 1 240px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; border: 0; margin: 0; padding: 0; }
+.filters button { font: 600 .75rem/1 var(--mono); letter-spacing: .04em; padding: 12px 10px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; border-radius: 0; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.count { font: .75rem var(--mono); color: var(--ink-soft); margin: 0 0 6px; }
+.parts { font-size: .9375rem; }
+.parts .part { cursor: pointer; }
+.parts .part:hover { background: var(--ink-tint); }
+.parts .part[data-open="1"] { background: var(--red-tint); }
+.parts td.n { font: 600 .875rem var(--mono); width: 2.6rem; }
+.parts th.ref { width: 11.5rem; }
+.toggle { display: inline-flex; align-items: baseline; gap: 6px; padding: 2px 0; border: 0; background: none; font: 600 .875rem/1.3 var(--mono); color: var(--ink); cursor: pointer; text-align: left; overflow-wrap: anywhere; }
+.toggle .plus { display: inline-grid; place-items: center; width: 16px; height: 16px; border: 1.5px solid var(--ink); font-size: .8rem; line-height: 1; flex: none; transform: translateY(2px); }
+.cl { display: inline-grid; place-items: center; width: 28px; height: 28px; border: 2px solid var(--ink); font: 700 .8125rem var(--mono); }
+.cl-B { border-style: dashed; background: var(--ink-tint); }
+.cl-C { background: var(--ink); color: var(--paper); }
+.parts td.cls { width: 3.6rem; }
+.parts td.anti { width: 11rem; overflow-wrap: anywhere; font-size: .875rem; }
+.plate td { padding: 0; background: var(--red-tint); border-bottom: 2px solid var(--ink); }
+.plate-in { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 16px; padding: 14px 12px 16px; }
+.plate-cap { font: .75rem/1.5 var(--mono); padding-right: 12px; border-right: 1px solid var(--rule); }
+.plate-cap b { font-weight: 700; font-size: .875rem; }
+.plate-cap p { margin: 8px 0 0; color: var(--ink-soft); }
+.plate-cap { min-width: 0; }
+.plate-cap code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.fig { display: block; width: 100%; max-width: 560px; height: auto; background: var(--paper); border: 1px solid var(--ink); }
+.fig .s { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+.fig .p { fill: var(--paper); }
+.fig .k { fill: var(--ink); }
+.fig .r { stroke: var(--red-deep); }
+.fig .d { stroke-dasharray: 5 3; }
+.fig .h { stroke-width: .8; }
+.fig .bar { stroke-width: 3; }
+.fig .pp { stroke: var(--paper); }
+.fig .c { vector-effect: non-scaling-stroke; }
+.fig .ar { marker-end: url(#m-arrow); }
+.fig .ar.r { marker-end: url(#m-arrow-r); }
+.fig .t { font: 500 12px var(--mono); fill: var(--ink); stroke: none; }
+.fig .t.b { font-weight: 700; font-size: 14px; }
+.fig .t.r { fill: var(--red-deep); }
+.fig .gh .p { fill: url(#hatch); }
+.fig .gh * { stroke-opacity: .6; }
+
+/* ==== 13. Matrix ==== */
+.matrix-wrap { position: relative; overflow-x: auto; }
+.matrix { width: auto; margin: 0 auto 0 0; font: .75rem var(--mono); }
+.matrix thead th { text-transform: none; letter-spacing: 0; border: 0; padding: 0; }
+.matrix th.col { width: 28px; height: 132px; padding: 0 0 6px; vertical-align: bottom; text-align: center; font-weight: 500; border: 0; }
+.matrix th.col span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; }
+.matrix th.row { padding: 0 12px 0 0; white-space: nowrap; font-weight: 500; border-bottom: 1px solid var(--hair); height: 30px; vertical-align: middle; }
+.matrix td { width: 28px; height: 30px; padding: 0; text-align: center; vertical-align: middle; border: 1px solid var(--hair); font-size: .95rem; }
+.matrix .hl-r, .matrix .hl-c { background: var(--red-tint); }
+.matrix td.hl-r.hl-c { background: var(--red-mid); }
+.matrix th.hl-r, .matrix th.hl-c { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; }
+.deps { margin-top: 26px; }
+.deps h3 { font-size: 1rem; }
+.deps td:first-child { white-space: nowrap; font-family: var(--mono); font-size: .875rem; }
+
+/* ==== 14. Troubleshooting ==== */
+.trouble { font-size: .9375rem; }
+.trouble td:first-child { font-weight: 600; width: 28%; }
+.trouble td:nth-child(2) { width: 24%; }
+
+/* ==== 15. Annex ==== */
+.xerox-fig { margin: 0; }
+.xerox { position: relative; isolation: isolate; background: var(--paper); border: 1px solid var(--ink); padding: 10px; }
+.xerox img { display: block; width: 100%; height: auto; aspect-ratio: 2800 / 1833; filter: grayscale(1) contrast(1.5) brightness(1.08); mix-blend-mode: multiply; }
+.xerox::after { content: ""; position: absolute; inset: 10px; pointer-events: none; mix-blend-mode: multiply; opacity: .35; background: radial-gradient(circle, rgb(23 20 15 / .7) 0 .8px, transparent 1.2px) 0 0 / 4px 4px; }
+.xerox-fig figcaption { margin-top: 10px; font: .75rem/1.5 var(--mono); }
+
+/* ==== 16. Colophon ==== */
+.colophon { position: relative; padding: 36px 0 56px; border-top: 5px solid var(--ink); display: grid; gap: 14px; font-size: .9375rem; }
+.colophon p { margin: 0; }
+.colophon .big { font: 700 1.5rem/1.1 var(--sans); text-transform: uppercase; }
+.colophon .mono { font: .8125rem/1.5 var(--mono); color: var(--ink-soft); }
+
+/* ==== 17. Reflow of tables on narrow screens ==== */
+@media (max-width: 719px) {
+  .reflow thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .reflow, .reflow tbody, .reflow tr, .reflow td, .reflow th { display: block; width: auto !important; }
+  .reflow tr { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .reflow td, .reflow tbody th { border: 0; padding: 4px 0; }
+  .reflow td[data-label]::before { content: attr(data-label); display: block; font: 600 .6875rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+  .parts .part { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; grid-template-areas: "n ref cl" "eff eff eff" "an an an"; column-gap: 8px; }
+  .parts .part .n { grid-area: n; }
+  .parts .part .ref { grid-area: ref; }
+  .parts .part .cls { grid-area: cl; }
+  .parts .part .eff { grid-area: eff; }
+  .parts .part .anti { grid-area: an; }
+  .plate td { padding: 0; }
+  .plate-in { grid-template-columns: minmax(0, 1fr); }
+  .plate-cap { border-right: 0; border-bottom: 1px solid var(--rule); padding: 0 0 10px; }
+}
+@media (max-width: 639px) {
+  .matrix-wrap { display: none; }
+}
+@media (max-width: 480px) {
+  .step { grid-template-columns: 44px minmax(0, 1fr); }
+  .plan-wrap { padding-bottom: 112px; }
+  .stamp { width: 62%; left: auto; right: 5%; bottom: 6px; }
+  .drawing figcaption { grid-template-columns: 1fr; }
+  .drawing figcaption span { border-right: 0; border-bottom: 1px solid var(--hair); }
+}
+
+/* ==== 18. Desktop: margin column, binder holes, side tabs ==== */
+@media (min-width: 900px) {
+  .sheet { padding: 0 60px 0 60px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 12px; width: 28px; pointer-events: none;
+    background:
+      radial-gradient(circle at 14px 14px, var(--desk) 0 8px, var(--rule) 8px 9px, transparent 9.5px) 0 140px / 28px 1000px repeat-y,
+      radial-gradient(circle at 14px 14px, var(--desk) 0 8px, var(--rule) 8px 9px, transparent 9.5px) 0 486px / 28px 1000px repeat-y,
+      radial-gradient(circle at 14px 14px, var(--desk) 0 8px, var(--rule) 8px 9px, transparent 9.5px) 0 832px / 28px 1000px repeat-y; }
+  .folio { grid-template-columns: var(--margin-w) minmax(0, 1fr); column-gap: var(--gutter); padding: 56px 0 48px; }
+  .margin { margin-bottom: 0; }
+  .margin-in { display: block; position: sticky; top: 24px; }
+  .secno { margin-bottom: 6px; }
+  .note, .mlegend { margin-top: 14px; }
+  .refblock { grid-template-columns: repeat(4, auto); width: max-content; max-width: 100%; }
+  .refblock div { border-bottom: 0 !important; border-right: 1px solid var(--rule); }
+  .refblock div:last-child { border-right: 0; }
+  .cover { padding-top: 56px; }
+  .cover-fig { grid-template-columns: minmax(0, 1fr) 230px; }
+  .tabs { position: fixed; top: 50%; right: max(0px, calc(50vw - 560px)); transform: translateY(-50%); background: none; max-height: 100vh; z-index: 30; }
+  .tabs ol { flex-direction: column; align-items: flex-end; gap: 4px; padding: 0; overflow-x: hidden; overflow-y: auto; max-height: 100vh; scrollbar-width: thin; }
+  .tabs.more::after { display: none; }
+  .tabs .full { display: none; }
+  .tabs .abbr { display: inline; }
+  .tabs a { writing-mode: vertical-rl; padding: 10px 1px; line-height: 26px; background: var(--paper); color: var(--ink); border: 1px solid var(--ink); border-right: 0; font-size: .6875rem; letter-spacing: .06em; box-shadow: none; }
+  .tabs a:hover { color: var(--red-deep); text-decoration: none; background: var(--paper); }
+  .tabs a[aria-current="true"] { background: var(--red-deep); color: var(--paper); line-height: 36px; }
+  .tabs a:focus-visible { outline-offset: -4px; outline-color: var(--red); }
+  .tabs a[aria-current="true"]:focus-visible { outline-color: var(--paper); }
+}
+@media (min-width: 900px) and (min-height: 860px) {
+  .tabs .full { display: inline; }
+  .tabs .abbr { display: none; }
+}
+@media (min-width: 900px) and (max-height: 720px) {
+  .tabs a { font-size: .625rem; padding: 7px 1px; line-height: 22px; }
+  .tabs a[aria-current="true"] { line-height: 30px; }
+  .tabs ol { gap: 3px; }
+}
+@media (min-width: 900px) and (max-width: 1100px) {
+  :root { --margin-w: 140px; --gutter: 22px; }
+  .plate-in { grid-template-columns: 150px minmax(0, 1fr); }
+}
+.folio { scroll-margin-top: 0; }
+@media (max-width: 899px) { html { scroll-padding-top: 52px; } }
+
+/* ==== 19. Motion (opt-in only) ==== */
+@media (prefers-reduced-motion: no-preference) {
+  .stamp svg { animation: thunk .34s cubic-bezier(.2, .8, .3, 1.3) .3s both; }
+  @keyframes thunk { 0% { opacity: 0; transform: scale(1.4); } 55% { opacity: 1; transform: scale(.95); } 100% { opacity: 1; transform: scale(1); } }
+  .plate .fig { animation: wipe .55s ease-out both; }
+  @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  .tabs a { transition: background-color .15s, color .15s; }
+}
+
+/* ==== 20. Print ==== */
+@page { size: A4; margin: 14mm 12mm; }
+@media print {
+  :root { --paper: #fff; --desk: #fff; }
+  html, body { background: #fff; font-size: 11pt; -webkit-print-color-adjust: economy; print-color-adjust: economy; }
+  .tabs, .crop, .reg, .skip, .copy, .tools, .filters, .cover-links, .noscript, .sheet::before { display: none !important; }
+  .sheet { max-width: none; border: 0; padding: 0; background: #fff; }
+  .folio { grid-template-columns: 34mm minmax(0, 1fr); column-gap: 8mm; padding: 8mm 0; }
+  .margin-in { position: static; display: block; }
+  .notice, .step, .parts tr, .trouble tr { break-inside: avoid; }
+  .notice-danger .notice-h, .notice-caution .notice-h { background: none !important; color: var(--ink) !important; }
+  .cl-C { background: none; color: var(--ink); border-width: 4px; }
+  .cl-B { background: none; }
+  .cover { padding: 0 0 4mm; break-after: page; }
+  .cover .kicker { margin-top: 5mm; }
+  .cover h1 { font-size: 34pt; margin: 2mm 0 3mm; }
+  .cover .lead { margin: 5mm 0 0; }
+  .cover-fig { display: block; }
+  .cover-fig { margin-top: 5mm; }
+  .drawing { max-width: 100mm; }
+  .plan-wrap { padding-bottom: 0; }
+  .legend { grid-template-columns: repeat(3, 1fr); margin-top: 4mm; }
+  .stamp svg { animation: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
+  .toc a::after, .toc a[href^="#"]::after { content: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Aller au contenu</a>
+
+<!-- Shared SVG resources: markers, hatch pattern, icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" style="fill:var(--ink)"/></marker>
+    <marker id="m-arrow-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" style="fill:var(--red-deep)"/></marker>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" style="stroke:var(--ink);stroke-width:.8"/></pattern>
+    <symbol id="i-warn" viewBox="0 0 20 20"><path d="M10 2 19 18H1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="miter"/><path d="M10 8v5M10 15v1.6" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9v6M10 5.5v1.5" stroke="currentColor" stroke-width="2"/></symbol>
+  </defs>
+</svg>
+<div class="sr-only" id="live" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">JavaScript est désactivé : la nomenclature interactive, ses filtres, la matrice et les boutons Copier sont indisponibles. Le reste de la notice se lit normalement, et la liste complète des modules figure dans le <a href="https://github.com/Nath-Lmn/i3-nuke#readme" rel="noopener">README du dépôt</a>.</p></noscript>
+
+<nav class="tabs" aria-label="Index de la notice">
+  <ol id="tab-list">
+    <li><a href="#cover" data-for="cover" title="Couverture"><span class="full">Couv.</span><span class="abbr">COUV.</span><span class="sr-only"> (Couverture)</span></a></li>
+    <li><a href="#contents" data-for="contents" title="Sommaire"><span class="full">Somm.</span><span class="abbr">SOMM.</span><span class="sr-only"> (Sommaire)</span></a></li>
+    <li><a href="#safety" data-for="safety" title="§ 1 Consignes de sécurité"><span class="full">§1 Sécu.</span><span class="abbr">§1</span><span class="sr-only"> (Consignes de sécurité)</span></a></li>
+    <li><a href="#install" data-for="install" title="§ 2 Mise en service"><span class="full">§2 Install.</span><span class="abbr">§2</span><span class="sr-only"> (Mise en service)</span></a></li>
+    <li><a href="#parts" data-for="parts" title="§ 3 Nomenclature des modules"><span class="full">§3 Modules</span><span class="abbr">§3</span><span class="sr-only"> (Nomenclature des modules)</span></a></li>
+    <li><a href="#matrix" data-for="matrix" title="§ 4 Matrice des dépendances"><span class="full">§4 Dépend.</span><span class="abbr">§4</span><span class="sr-only"> (Matrice des dépendances)</span></a></li>
+    <li><a href="#recovery" data-for="recovery" title="§ 5 Retour à la normale"><span class="full">§5 Retour</span><span class="abbr">§5</span><span class="sr-only"> (Retour à la normale)</span></a></li>
+    <li><a href="#annex" data-for="annex" title="Annexe A"><span class="full">Annexe A</span><span class="abbr">Ann. A</span><span class="sr-only"> (Pièce à conviction)</span></a></li>
+    <li><a href="#colophon" data-for="colophon" title="Colophon"><span class="full">Coloph.</span><span class="abbr">Col.</span><span class="sr-only"> (Colophon)</span></a></li>
+  </ol>
+</nav>
+
+<div class="sheet">
+  <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
+  <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
+  <svg class="reg top" viewBox="0 0 22 22" aria-hidden="true"><circle class="s" cx="11" cy="11" r="6"/><path class="s" d="M11 0v22M0 11h22"/></svg>
+  <svg class="reg bot" viewBox="0 0 22 22" aria-hidden="true"><circle class="s" cx="11" cy="11" r="6"/><path class="s" d="M11 0v22M0 11h22"/></svg>
+
+  <!-- ============ 0. COVER ============ -->
+  <header class="cover" id="cover" data-sec>
+    <dl class="refblock">
+      <div><dt>Réf.</dt><dd>I3N-016</dd></div>
+      <div><dt>Rév.</dt><dd>C</dd></div>
+      <div><dt>Date</dt><dd>25.11.2026</dd></div>
+      <div><dt>Pages</dt><dd>12</dd></div>
+    </dl>
+    <p class="kicker">Notice de mise en service et d'entretien, à l'usage du confloosateur</p>
+    <h1><span>Unité de</span> <span>confloose</span> <span>I3-NUKE</span></h1>
+    <p class="subtitle">Never forget to i3lock again</p>
+
+    <div class="cover-fig">
+      <figure class="drawing">
+        <div class="plan-wrap">
+        <svg class="plan" viewBox="0 0 440 354" role="img" aria-labelledby="plan-t">
+          <title id="plan-t">Schéma technique d'un cadenas ouvert, anse levée, avec trois repères : A anse, B corps, C barillet.</title>
+          <style>
+            .plan .s{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+            .plan .h{stroke-width:.8}.plan .d{stroke-dasharray:6 3}.plan .cenl{stroke-dasharray:14 3 2 3;stroke-width:.8}
+            .plan .r{stroke:var(--red-deep)}.plan .t{font:500 11px var(--mono);fill:var(--ink)}.plan .t.r{fill:var(--red-deep);stroke:none}
+            .plan .cb{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}.plan .cl-t{font:700 13px var(--mono);fill:var(--ink);text-anchor:middle}
+          </style>
+          <defs>
+            <pattern id="plan-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" style="stroke:var(--ink);stroke-width:.8"/></pattern>
+          </defs>
+          <!-- centre line -->
+          <path class="s cenl" d="M205 10V318"/>
+          <!-- shackle: right leg enters the body, left leg is lifted out (open) -->
+          <path d="M148 128V92A57 57 0 0 1 262 92V190" fill="none" style="stroke:var(--ink);stroke-width:15"/>
+          <path d="M148 128V92A57 57 0 0 1 262 92V190" fill="none" style="stroke:var(--paper);stroke-width:10"/>
+          <path class="s" d="M140.500 128H155.500"/>
+          <!-- hidden lines inside the body -->
+          <path class="s d h" d="M148 178V222M262 178V222"/>
+          <!-- body -->
+          <rect class="s" x="100" y="178" width="210" height="136" fill="var(--paper)" style="fill:var(--paper)"/>
+          <rect class="s h" x="110" y="188" width="190" height="116"/>
+          <path d="M110 288H300V304H110Z" fill="url(#plan-hatch)" stroke="none"/>
+          <!-- shackle drawn over the body edge -->
+          <path d="M262 178V190" class="s"/>
+          <!-- keyhole -->
+          <circle class="s" cx="205" cy="232" r="14"/>
+          <path class="s" d="M198 244H212L216 274H194Z"/>
+          <path class="s h cenl" d="M120 232H290"/>
+          <!-- dimension: gap -->
+          <path class="s r h" d="M118 128H80M118 178H80M88 128V178"/>
+          <path class="s r" d="M84 134 88 128 92 134M84 172 88 178 92 172"/>
+          <text class="t r" x="74" y="158" text-anchor="end">JEU</text>
+          <!-- width dimension -->
+          <path class="s h" d="M100 322V338M310 322V338M100 330H310"/>
+          <text class="t" x="205" y="348" text-anchor="middle">LARGEUR  1 : 1</text>
+          <!-- leader lines and callouts -->
+          <path class="s h" d="M232 56 332 34H372"/><circle class="s" cx="232" cy="56" r="2.500" style="fill:var(--ink)"/>
+          <circle class="cb" cx="390" cy="34" r="16"/><text class="cl-t" x="390" y="39">A</text>
+          <path class="s h" d="M310 262H372"/><circle class="s" cx="310" cy="262" r="2.500" style="fill:var(--ink)"/>
+          <circle class="cb" cx="390" cy="262" r="16"/><text class="cl-t" x="390" y="267">B</text>
+          <path class="s h" d="M219 238 300 306H372"/><circle class="s" cx="219" cy="238" r="2.500" style="fill:var(--ink)"/>
+          <circle class="cb" cx="390" cy="306" r="16"/><text class="cl-t" x="390" y="311">C</text>
+        </svg>
+        <div class="stamp">
+          <svg viewBox="0 0 300 118" role="img" aria-label="Tampon : verrou non engagé">
+            <defs>
+              <filter id="rough" x="-5%" y="-8%" width="110%" height="116%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="warp"/>
+                <feDisplacementMap in="SourceGraphic" in2="warp" scale="3.5" xChannelSelector="R" yChannelSelector="G" result="bent"/>
+                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="grain"/>
+                <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  4.5 0 0 0 -1.3" result="speckle"/>
+                <feComposite in="bent" in2="speckle" operator="in"/>
+              </filter>
+            </defs>
+            <rect x="3" y="3" width="294" height="112" style="fill:var(--paper)"/>
+            <g filter="url(#rough)" style="fill:var(--red);stroke:var(--red)">
+              <rect x="5" y="5" width="290" height="108" fill="none" stroke-width="5"/>
+              <rect x="13" y="13" width="274" height="92" fill="none" stroke-width="1.5"/>
+              <text x="150" y="35" text-anchor="middle" stroke="none" style="font:700 14px var(--mono);letter-spacing:.16em;fill:var(--red-deep)">CONTRÔLE FINAL</text>
+              <text x="150" y="70" text-anchor="middle" stroke="none" textLength="250" lengthAdjust="spacingAndGlyphs" style="font:700 30px var(--sans)">VERROU NON ENGAGÉ</text>
+              <text x="150" y="95" text-anchor="middle" stroke="none" textLength="250" lengthAdjust="spacingAndGlyphs" style="font:700 14px var(--mono);fill:var(--red-deep)">ANSE LEVÉE. SESSION OUVERTE.</text>
+            </g>
+          </svg>
+        </div>
+        </div>
+        <figcaption><span><b>Fig. 0</b></span><span>Vue d'ensemble, verrou ouvert</span><span>Éch. 1 : 1</span></figcaption>
+      </figure>
+      <ol class="legend">
+        <li><span class="ltr" aria-hidden="true">A</span><div><b><span class="sr-only">Repère A : </span>Anse</b><span class="d">Relevée. Elle aurait dû être rabattue (<code>$mod+Escape</code>, puis <code>i3lock</code>).</span></div></li>
+        <li><span class="ltr" aria-hidden="true">B</span><div><b><span class="sr-only">Repère B : </span>Corps de l'unité</b><span class="d"><code>prank.sh</code>, seize modules, journal de bord fourni.</span></div></li>
+        <li><span class="ltr" aria-hidden="true">C</span><div><b><span class="sr-only">Repère C : </span>Barillet</b><span class="d">Personne n'a tourné la clé. Personne n'y pense jamais.</span></div></li>
+      </ol>
+    </div>
+
+    <p class="lead">La présente notice s'adresse au confloosateur. Elle décrit la mise en service, le fonctionnement et le démontage de seize modules de confloose pour session i3 laissée ouverte. La tradition d'EPITA l'autorise, l'encourage même, et y met des conditions.</p>
+    <p class="cover-links">
+      <a class="btn primary" href="#install">Aller à la mise en service</a>
+      <a class="btn" href="https://github.com/Nath-Lmn/i3-nuke" rel="noopener">Dépôt GitHub</a>
+    </p>
+  </header>
+
+  <main id="main">
+
+  <!-- ============ 1. CONTENTS ============ -->
+  <section class="folio" id="contents" data-sec aria-labelledby="h-contents">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">§ 0.0</p><p class="kicker">Sommaire</p>
+      <p class="note"><b>Note.</b> Pagination purement décorative. Les liens, eux, fonctionnent.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-contents">Sommaire</h2>
+      <nav aria-label="Sommaire">
+        <ol class="toc">
+          <li><a href="#cover"><span class="t">Couverture</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>1</span></a></li>
+          <li><a href="#contents"><span class="t">Sommaire</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>2</span></a></li>
+          <li><a href="#safety"><span class="t">§ 1 Consignes de sécurité</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>3</span></a></li>
+          <li><a href="#install"><span class="t">§ 2 Mise en service</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>4</span></a>
+            <ol>
+              <li class="sub"><a href="#step-download"><span class="t">2.1 Téléchargement de l'unité</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>4</span></a></li>
+              <li class="sub"><a href="#step-menu"><span class="t">2.2 Menu interactif</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>4</span></a></li>
+              <li class="sub"><a href="#step-direct"><span class="t">2.3 Blague directe</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>5</span></a></li>
+              <li class="sub"><a href="#step-undo"><span class="t">2.4 Démontage général</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>5</span></a></li>
+            </ol></li>
+          <li><a href="#parts"><span class="t">§ 3 Nomenclature des modules</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>6</span></a></li>
+          <li><a href="#matrix"><span class="t">§ 4 Matrice des dépendances</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>9</span></a></li>
+          <li><a href="#recovery"><span class="t">§ 5 Retour à la normale</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>10</span></a></li>
+          <li><a href="#annex"><span class="t">Annexe A Pièce à conviction</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>11</span></a></li>
+          <li><a href="#colophon"><span class="t">Colophon</span><span class="dots" aria-hidden="true"></span><span class="pg"><span class="sr-only">page </span>12</span></a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ============ 2. SAFETY ============ -->
+  <section class="folio" id="safety" data-sec aria-labelledby="h-safety">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">§ 1.0</p><p class="kicker">Fair-play</p>
+      <p class="note"><b>Note.</b> Lecture obligatoire avant toute intervention. Lecture facultative après, mais on ne dira pas que vous n'étiez pas prévenu.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-safety">Consignes de sécurité</h2>
+      <p class="lead">Si la session est ouverte, la victime l'a bien cherché. Elle n'a pas à perdre son travail pour autant.</p>
+      <div class="notices">
+        <article class="notice notice-danger" aria-labelledby="n-1-1">
+          <div class="notice-h"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg><span id="n-1-1">Danger</span><span class="num">1.1</span></div>
+          <div class="notice-b"><p><strong>Ne jamais toucher au travail, au code, ni à git.</strong> Aucune exception. Aucune circonstance atténuante. « C'était pour rire » n'est pas une circonstance atténuante.</p></div>
+        </article>
+        <article class="notice notice-caution" aria-labelledby="n-1-2">
+          <div class="notice-h"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg><span id="n-1-2">Attention</span><span class="num">1.2</span></div>
+          <div class="notice-b">
+            <p><strong>Tout doit pouvoir être annulé en quelques secondes.</strong> Chaque modification de configuration est consignée dans <code>~/prank_journal.txt</code> avec son antidote : la victime peut donc tout défaire elle-même. C'est le fair-play, et c'est aussi ce qui la rendra furieuse.</p>
+            <p><strong>Ne pas monter tous les modules en même temps.</strong> La session resterait récupérable, mais avec le clavier en dvorak et l'écran à l'envers, bonne chance pour atteindre le fichier qui permet de tout nettoyer.</p>
+          </div>
+        </article>
+        <article class="notice notice-note" aria-labelledby="n-1-3">
+          <div class="notice-h"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span id="n-1-3">Remarque</span><span class="num">1.3</span></div>
+          <div class="notice-b">
+            <p><strong><code>terminal-shutdown</code> est volontairement FAUX.</strong> Un vrai arrêt détruirait le travail non sauvegardé, ce que la tradition interdit, et serait irréversible. Cinq secondes de suspense, puis la révélation.</p>
+          </div>
+        </article>
+        <article class="notice notice-note" aria-labelledby="n-1-4">
+          <div class="notice-h"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span id="n-1-4">Remarque</span><span class="num">1.4</span></div>
+          <div class="notice-b">
+            <p><strong>On assume son coup.</strong> Ne pas utiliser sur une machine dont vous n'êtes pas prêt à assumer la responsabilité.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. INSTALL ============ -->
+  <section class="folio" id="install" data-sec aria-labelledby="h-install">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">§ 2.0</p><p class="kicker">Procédure</p>
+      <p class="note"><b>Note.</b> À exécuter dans un terminal de la session graphique de la victime. Pas dans la vôtre : l'effet serait instructif, mais pour vous.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-install">Mise en service</h2>
+      <p class="lead">Quatre opérations. La première prend dix secondes, la dernière aussi, et c'est le but.</p>
+      <ol class="proc">
+        <li class="step" id="step-download">
+          <span class="step-no">2.1</span>
+          <div><h3>Téléchargement de l'unité</h3>
+            <p>Récupérer <code>prank.sh</code> sur la session de la victime et le rendre exécutable.</p>
+            <div class="cmd"><pre><code id="cmd-1">curl -fsSL https://raw.githubusercontent.com/Nath-Lmn/i3-nuke/main/prank.sh -o prank.sh &amp;&amp; chmod +x prank.sh</code></pre><button type="button" class="copy" data-copy-from="cmd-1" aria-label="Copier la commande 2.1">Copier</button></div></div>
+        </li>
+        <li class="step" id="step-menu">
+          <span class="step-no">2.2</span>
+          <div><h3>Menu interactif</h3>
+            <p>Lancer l'unité sans argument. Le menu propose les seize modules. <code>./prank.sh list</code> en donne la liste.</p>
+            <div class="cmd"><pre><code id="cmd-2">./prank.sh</code></pre><button type="button" class="copy" data-copy-from="cmd-2" aria-label="Copier la commande 2.2">Copier</button></div></div>
+        </li>
+        <li class="step" id="step-direct">
+          <span class="step-no">2.3</span>
+          <div><h3>Blague directe</h3>
+            <p>Pour les initiés : nommer le module directement en ligne de commande. Exemple avec <code>rotate</code>, module n° 6.</p>
+            <div class="cmd"><pre><code id="cmd-3">./prank.sh rotate</code></pre><button type="button" class="copy" data-copy-from="cmd-3" aria-label="Copier la commande 2.3">Copier</button></div></div>
+        </li>
+        <li class="step" id="step-undo">
+          <span class="step-no">2.4</span>
+          <div><h3>Démontage général</h3>
+            <p>Tout annuler d'un coup. Un module isolé s'annule avec <code>./prank.sh undo rotate</code>.</p>
+            <div class="cmd"><pre><code id="cmd-4">./prank.sh undo-all</code></pre><button type="button" class="copy" data-copy-from="cmd-4" aria-label="Copier la commande 2.4">Copier</button></div></div>
+        </li>
+      </ol>
+      <div class="notices" style="margin-top:22px">
+        <article class="notice notice-caution" aria-labelledby="n-2-1">
+          <div class="notice-h"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg><span id="n-2-1">Attention</span><span class="num">2.5</span></div>
+          <div class="notice-b">
+            <p>Les modules marqués <code>[rc]</code> ne s'arment que dans les <strong>nouveaux</strong> terminaux. Pour en ouvrir un immédiatement, qui hérite des pièges :</p>
+            <div class="cmd" style="margin-bottom:12px"><pre><code id="cmd-5">./prank.sh new-terminal</code></pre><button type="button" class="copy" data-copy-from="cmd-5" aria-label="Copier la commande new-terminal">Copier</button></div>
+          </div>
+        </article>
+        <article class="notice notice-note" aria-labelledby="n-2-2">
+          <div class="notice-h"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span id="n-2-2">Remarque</span><span class="num">2.6</span></div>
+          <div class="notice-b">
+            <p><strong>Limites de l'appareil.</strong> Wayland n'est pas supporté : <code>xrandr</code>, <code>xinput</code> et <code>i3lock</code> sont du X11. Sous NixOS, si <code>~/.bashrc</code>, <code>~/.zshrc</code> ou <code>~/.config/i3/config</code> sont des liens en lecture seule vers <code>/nix/store</code>, les modules <code>[rc]</code> échouent proprement avec un message.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. PARTS LIST ============ -->
+  <section class="folio" id="parts" data-sec aria-labelledby="h-parts">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">§ 3.0</p><p class="kicker">Nomenclature</p>
+      <dl class="mlegend">
+        <div><dt><span class="cl cl-A" aria-hidden="true">A</span></dt><dd><b>Classe A</b><br>Sans risque.</dd></div>
+        <div><dt><span class="cl cl-B" aria-hidden="true">B</span></dt><dd><b>Classe B</b><br><code>[rc]</code> : s'arme au prochain terminal.</dd></div>
+        <div><dt><span class="cl cl-C" aria-hidden="true">C</span></dt><dd><b>Classe C</b><br>Sensible. <code>lock-shot</code>, à lancer en dernier.</dd></div>
+      </dl>
+      <p class="note"><b>Note.</b> Activer une référence pour déplier sa planche. Les planches sont à l'échelle approximative de la décence.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-parts">Nomenclature des modules</h2>
+      <p class="lead">Seize pièces, une référence chacune, un antidote chacune.</p>
+      <div class="tools js-only">
+        <div class="search"><label class="label" for="parts-q">Rechercher une pièce</label><input id="parts-q" type="search" placeholder="rotate, vim, souris..." autocomplete="off" spellcheck="false"></div>
+        <fieldset class="filters" id="parts-filters"><legend class="sr-only">Filtrer par classe</legend>
+          <button type="button" data-f="all" aria-pressed="true">Toutes</button>
+          <button type="button" data-f="A" aria-pressed="false">A sans risque</button>
+          <button type="button" data-f="B" aria-pressed="false">B [rc]</button>
+          <button type="button" data-f="C" aria-pressed="false">C sensible</button>
+        </fieldset>
+      </div>
+      <p class="count js-only" id="parts-count" aria-live="polite">16 pièces sur 16</p>
+      <table class="parts reflow" id="parts-table">
+        <caption class="sr-only">Nomenclature des seize modules : numéro, référence, effet, classe, antidote. Activer une référence pour déplier sa planche.</caption>
+        <thead><tr><th scope="col">N°</th><th scope="col">Référence</th><th scope="col">Effet</th><th scope="col">Classe</th><th scope="col">Antidote</th></tr></thead>
+        <tbody id="parts-body"><tr><td colspan="5">Cette nomenclature s'affiche avec JavaScript. À défaut, la liste complète figure dans le <a href="https://github.com/Nath-Lmn/i3-nuke#readme" rel="noopener">README du dépôt</a>.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 5. MATRIX ============ -->
+  <section class="folio" id="matrix" data-sec aria-labelledby="h-matrix">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">§ 4.0</p><p class="kicker">Dépendances</p>
+      <p class="note"><b>Note.</b> Colonnes 01, 02, 08, 13 et 16 : aucune dépendance listée par le constructeur. Les cases pleines sont celles de la liste du README, ni plus ni moins.</p>
+      <p class="note"><b>Note.</b> Ligne « maim / ImageMagick » : l'un ou l'autre pour <code>lock-shot</code> ; ImageMagick (<code>convert</code>) pour <code>cursor-image</code>.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-matrix">Matrice des dépendances</h2>
+      <p class="lead">Quels paquets installer avant de brancher quel module. <span class="js-only">Sur grand écran, survoler une ligne ou une colonne en surligne la croix.</span></p>
+      <div class="matrix-wrap" id="matrix-wrap"></div>
+      <div class="deps">
+        <h3>Lecture alternative, par option</h3>
+        <table class="reflow">
+          <caption class="sr-only">Dépendances par option, d'après le README</caption>
+          <thead><tr><th scope="col">Option</th><th scope="col">Paquets</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Option">lock-shot</td><td data-label="Paquets"><code>i3lock</code> + <code>maim</code> ou ImageMagick</td></tr>
+            <tr><td data-label="Option">rotate, mouse-*, dvorak</td><td data-label="Paquets"><code>xrandr</code>, <code>xinput</code>, <code>setxkbmap</code></td></tr>
+            <tr><td data-label="Option">cursor-image</td><td data-label="Paquets"><code>xcursorgen</code> + ImageMagick (<code>convert</code>)</td></tr>
+            <tr><td data-label="Option">vim-*</td><td data-label="Paquets">vim compilé avec <code>+clientserver</code>, lancé avec <code>--servername</code></td></tr>
+            <tr><td data-label="Option">opacity</td><td data-label="Paquets"><code>xprop</code>, <code>xwininfo</code> + compositeur (<code>picom</code> ou <code>compton</code>) actif</td></tr>
+            <tr><td data-label="Option">oneko</td><td data-label="Paquets"><code>oneko</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RECOVERY ============ -->
+  <section class="folio" id="recovery" data-sec aria-labelledby="h-recovery">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">§ 5.0</p><p class="kicker">Dépannage</p>
+      <p class="note"><b>Note.</b> Avant de paniquer : <code>cat ~/prank_journal.txt</code>. Chaque modification y figure avec son antidote.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-recovery">Retour à la normale</h2>
+      <p class="lead">Un module isolé s'annule avec <code>./prank.sh undo &lt;nom&gt;</code>. Tout d'un coup, avec <code>./prank.sh undo-all</code>. Le journal <code>~/prank_journal.txt</code> garde la trace du reste.</p>
+      <div class="cmd" style="margin-bottom:22px"><pre><code id="cmd-6">./prank.sh undo-all</code></pre><button type="button" class="copy" data-copy-from="cmd-6" aria-label="Copier la commande undo-all">Copier</button></div>
+      <table class="trouble reflow">
+        <caption class="sr-only">Tableau de dépannage : symptôme, cause, remède</caption>
+        <thead><tr><th scope="col">Symptôme</th><th scope="col">Cause</th><th scope="col">Remède</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Symptôme">L'écran est à l'envers.</td><td data-label="Cause"><code>rotate</code> (n° 6)</td><td data-label="Remède"><code>./prank.sh undo rotate</code>. Pencher la tête est facultatif.</td></tr>
+          <tr><td data-label="Symptôme"><code>ls</code> change de dossier, <code>cd</code> liste, <code>cat</code> lit à l'envers.</td><td data-label="Cause"><code>swap-commands</code> (n° 1)</td><td data-label="Remède"><code>./prank.sh undo swap-commands</code>. Pour enquêter : <code>type -a ls</code>, <code>declare -f ls</code>, <code>command ls</code>.</td></tr>
+          <tr><td data-label="Symptôme">vim ouvre firefox, ou l'inverse.</td><td data-label="Cause"><code>swap-apps</code> (n° 2)</td><td data-label="Remède"><code>./prank.sh undo swap-apps</code>.</td></tr>
+          <tr><td data-label="Symptôme">Les touches ne donnent pas les lettres attendues.</td><td data-label="Cause"><code>dvorak</code> (n° 3)</td><td data-label="Remède"><code>./prank.sh undo dvorak</code>, à taper en aveugle. Long, humiliant, faisable.</td></tr>
+          <tr><td data-label="Symptôme">La souris part dans l'autre sens, ou à la vitesse d'un escargot.</td><td data-label="Cause"><code>mouse-invert</code> (n° 11), <code>mouse-slow</code> (n° 10)</td><td data-label="Remède"><code>./prank.sh undo mouse-invert</code>, <code>./prank.sh undo mouse-slow</code>.</td></tr>
+          <tr><td data-label="Symptôme">Le curseur est une image, ou occupe la moitié de l'écran.</td><td data-label="Cause"><code>cursor-image</code> (n° 7), <code>cursor-big</code> (n° 8)</td><td data-label="Remède"><code>./prank.sh undo cursor-image</code>, <code>./prank.sh undo cursor-big</code>. Si les deux sont posés, annuler dans l'ordre inverse de l'installation.</td></tr>
+          <tr><td data-label="Symptôme">Les fenêtres sont presque transparentes.</td><td data-label="Cause"><code>opacity</code> (n° 12)</td><td data-label="Remède"><code>./prank.sh undo opacity</code>.</td></tr>
+          <tr><td data-label="Symptôme">vim est rouge, en miroir, ou en thème clair.</td><td data-label="Cause"><code>vim-red</code>, <code>vim-mirror</code>, <code>vim-light</code> (n° 4, 5, 14)</td><td data-label="Remède"><code>./prank.sh undo vim-red</code> et ses deux collègues. Le texte, lui, n'a jamais été touché.</td></tr>
+          <tr><td data-label="Symptôme"><code>shutdown</code> répond « shutup ».</td><td data-label="Cause"><code>shutup</code> (n° 13)</td><td data-label="Remède"><code>./prank.sh undo shutup</code>. <code>sudo shutdown</code> a fonctionné depuis le début.</td></tr>
+          <tr><td data-label="Symptôme">Un chat poursuit le curseur.</td><td data-label="Cause"><code>oneko</code> (n° 15)</td><td data-label="Remède"><code>./prank.sh undo oneko</code>. Le chat n'a pas d'avis sur la question.</td></tr>
+          <tr><td data-label="Symptôme">Le terminal annonce l'extinction du système dans 5 secondes.</td><td data-label="Cause"><code>terminal-shutdown</code> (n° 16), volontairement faux</td><td data-label="Remède">Attendre cinq secondes. Rien n'est éteint, le travail est intact. Puis <code>./prank.sh undo terminal-shutdown</code>.</td></tr>
+          <tr><td data-label="Symptôme">La session est verrouillée sur un bureau d'apparence parfaitement normale.</td><td data-label="Cause"><code>lock-shot</code> (n° 9)</td><td data-label="Remède">Le mot de passe de la victime. Aucune commande n'y peut rien : c'est un verrou, c'est fait pour ça.</td></tr>
+          <tr><td data-label="Symptôme">Tout est cassé à la fois et plus personne ne sait quoi.</td><td data-label="Cause">Cumul de modules, contraire à la consigne 1.2</td><td data-label="Remède"><code>./prank.sh undo-all</code> ; à défaut, lire <code>~/prank_journal.txt</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 7. ANNEX ============ -->
+  <section class="folio" id="annex" data-sec aria-labelledby="h-annex">
+    <div class="margin"><div class="margin-in">
+      <p class="secno">Ann. A</p><p class="kicker">Pièce à conviction</p>
+      <p class="note"><b>Note.</b> Reproduction photocopiée, contraste augmenté. L'original est en couleurs et nettement plus enflammé.</p>
+    </div></div>
+    <div class="body">
+      <h2 id="h-annex">Pièce à conviction</h2>
+      <figure class="xerox-fig">
+        <div class="xerox">
+          <img src="image%20github.png" width="2800" height="1833" loading="lazy" decoding="async" alt="Un terminal NixOS en pleine compilation, en flammes, sur lequel tombe une bombe marquée « I3 NUKE », entre deux visages de dessin stupéfaits.">
+        </div>
+        <figcaption><b>Fig. 17</b>, Pièce à conviction n° 1. Illustration du dépôt : l'instant précis où quelqu'un n'a pas verrouillé sa session.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============ 8. COLOPHON ============ -->
+  <footer class="colophon" id="colophon" data-sec>
+    <p class="big">Imprimé à EPITA, tirage 1 exemplaire.</p>
+    <p class="mono">Unité de Confloose I3-NUKE, réf. I3N-016, révision C, 25 novembre 2026. Document non contractuel.</p>
+    <p>Dépôt : <a href="https://github.com/Nath-Lmn/i3-nuke" rel="noopener">github.com/Nath-Lmn/i3-nuke</a>. Des idées de blagounettes à ajouter à la nomenclature ? Contacter l'auteur via le dépôt.</p>
+    <p>Bon confloose, avec modération.</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ==== DATA: all user-visible copy for the interactive parts, keyed in English ==== */
+const CLASSES = {
+  A: { label: 'sans risque', long: 'Classe A : sans risque' },
+  B: { label: '[rc]', long: "Classe B : [rc], s'arme au prochain terminal" },
+  C: { label: 'sensible', long: 'Classe C : sensible, à lancer en dernier' }
+};
+
+const PRANKS = [
+  { n: 1, name: 'swap-commands', cls: 'B', effect: "Intervertit les commandes : <code>ls</code> fait un <code>cd</code>, <code>cd</code> liste, <code>cat</code> lit à l'envers (<code>tac</code>).", undo: 'undo swap-commands',
+    cap: 'Commandes permutées', alt: 'Trois flèches : ls devient cd, cd devient ls, cat devient tac.',
+    note: "Fonctions non exportées : scripts et Makefiles de la victime restent intacts. <code>builtin</code> et <code>command</code> évitent toute récursion infinie." },
+  { n: 2, name: 'swap-apps', cls: 'B', effect: "Intervertit les logiciels : <code>vim</code> lance firefox et inversement.", undo: 'undo swap-apps',
+    cap: 'Logiciels permutés', alt: 'Deux fenêtres, vim et firefox, reliées par deux flèches croisées.',
+    note: 'Les paires se choisissent : <code>SWAP_APPS="vim:firefox nano:gedit" ./prank.sh swap-apps</code>.' },
+  { n: 3, name: 'dvorak', cls: 'A', effect: 'Passe le clavier en DVORAK.', undo: 'undo dvorak',
+    cap: 'Clavier réagencé', alt: 'Deux rangées de touches, Q W E R T Y puis apostrophe, virgule, point, P, Y, F.',
+    note: "À ne pas cumuler avec l'écran retourné : voir consigne 1.2." },
+  { n: 4, name: 'vim-red', cls: 'A', effect: 'Met tout le texte des vim <strong>ouverts</strong> en rouge.', undo: 'undo vim-red',
+    cap: 'Texte en rouge', alt: 'Une fenêtre vim dont les lignes de texte sont dessinées en rouge.',
+    note: 'Requiert vim compilé avec <code>+clientserver</code>, lancé avec <code>--servername</code>.' },
+  { n: 5, name: 'vim-mirror', cls: 'A', effect: "Inverse l'affichage de vim (droite → gauche).", undo: 'undo vim-mirror',
+    cap: 'Affichage en miroir', alt: 'Deux fenêtres vim de part et d\'autre d\'un axe de symétrie : texte à gauche, puis texte à droite.',
+    note: 'Requiert vim compilé avec <code>+clientserver</code>, lancé avec <code>--servername</code>.' },
+  { n: 6, name: 'rotate', cls: 'A', effect: "Retourne l'écran à 180°.", undo: 'undo rotate',
+    cap: 'Écran retourné à 180°', alt: 'Un écran dessiné à l\'envers, pied en haut, la lettre F retournée, avec une flèche de rotation de 180 degrés.',
+    note: "Passe par <code>xrandr</code>. X11 uniquement : Wayland n'est pas supporté." },
+  { n: 7, name: 'cursor-image', cls: 'A', effect: "Remplace le curseur par l'image passée en argument : <code>./prank.sh cursor-image chat.png</code>.", undo: 'undo cursor-image',
+    cap: 'Curseur remplacé par une image', alt: 'Un curseur flèche, une flèche, puis un cadre contenant une image nommée chat.png.',
+    note: "N'affecte que les applications lancées après la blague. Combiné à cursor-big, annuler dans l'ordre inverse de l'installation." },
+  { n: 8, name: 'cursor-big', cls: 'A', effect: 'Curseur immense (taille 96).', undo: 'undo cursor-big',
+    cap: 'Curseur immense', alt: 'Un petit curseur normal à côté d\'un curseur géant coté « taille 96 ».',
+    note: "N'affecte que les applications lancées après la blague. Combiné à cursor-image, annuler dans l'ordre inverse de l'installation." },
+  { n: 9, name: 'lock-shot', cls: 'C', effect: 'Screenshot du bureau puis <code>i3lock</code> dessus. À lancer <strong>en dernier</strong>.', undo: null, undoText: 'Mot de passe de la victime',
+    cap: 'Capture d\'écran verrouillée', alt: 'Un écran affichant deux fenêtres, recouvert d\'un cadenas fermé, avec la mention maim puis i3lock.',
+    note: "Le bureau affiché est une capture d'écran. Seul le mot de passe de la victime le libère, d'où la consigne : en dernier." },
+  { n: 10, name: 'mouse-slow', cls: 'A', effect: 'Souris au ralenti (15 % de vitesse).', undo: 'undo mouse-slow',
+    cap: 'Souris au ralenti', alt: 'Une souris, une longue flèche pour le mouvement de la main et une flèche courte pour le curseur, à 15 pour cent.',
+    note: 'Passe par <code>xinput</code>.' },
+  { n: 11, name: 'mouse-invert', cls: 'A', effect: 'Inverse les axes de la souris (180°).', undo: 'undo mouse-invert',
+    cap: 'Axes de la souris inversés', alt: 'Une souris dont la flèche monte à droite, et un écran où le curseur se déplace dans le sens opposé.',
+    note: 'Passe par <code>xinput</code>.' },
+  { n: 12, name: 'opacity', cls: 'A', effect: "Toutes les fenêtres à 20 % d'opacité.", undo: 'undo opacity',
+    cap: 'Fenêtres fantômes', alt: 'Trois fenêtres qui se chevauchent, hachurées et translucides, légendées 20 pour cent.',
+    note: 'Requiert <code>xprop</code>, <code>xwininfo</code> et un compositeur (<code>picom</code> ou <code>compton</code>) actif.' },
+  { n: 13, name: 'shutup', cls: 'B', effect: '<code>shutdown</code> répond « shutup ».', undo: 'undo shutup',
+    cap: 'Shutdown détourné', alt: 'Une fenêtre de terminal : la commande shutdown reçoit la réponse shutup, tandis que sudo shutdown fonctionne toujours.',
+    note: "<code>sudo shutdown</code> continue de fonctionner : <code>secure_path</code> ignore le PATH utilisateur. Seul le <code>shutdown</code> simple est piégé." },
+  { n: 14, name: 'vim-light', cls: 'A', effect: 'Passe vim en thème clair.', undo: 'undo vim-light',
+    cap: 'Vim en thème clair', alt: 'Deux fenêtres vim reliées par une flèche : la première sombre, la seconde claire.',
+    note: 'Requiert vim compilé avec <code>+clientserver</code>, lancé avec <code>--servername</code>.' },
+  { n: 15, name: 'oneko', cls: 'A', effect: 'Un chat poursuit le curseur.', undo: 'undo oneko',
+    cap: 'Chat à la poursuite du curseur', alt: 'Un chat dessiné en formes simples courant le long d\'une trajectoire pointillée vers un curseur.',
+    note: 'Requiert le paquet <code>oneko</code>.' },
+  { n: 16, name: 'terminal-shutdown', cls: 'B', effect: "<strong>Faux</strong> shutdown à l'ouverture du 1er terminal : compte à rebours de 5 s, puis révélation.", undo: 'undo terminal-shutdown',
+    cap: 'Faux arrêt du système', alt: 'Une fenêtre de terminal annonçant un arrêt, cinq cases numérotées de 5 à 1, puis le mot FAUX.',
+    note: "Volontairement faux : un vrai shutdown détruirait le travail non sauvegardé. Ne se déclenche qu'au premier terminal (drapeau dans <code>~/.cache/</code>)." }
+];
+
+/* Package rows: which prank numbers need them (mirrors the README dependency table). */
+const PACKAGES = [
+  { pkg: 'i3lock', uses: [9] },
+  { pkg: 'maim / ImageMagick', uses: [9, 7] },
+  { pkg: 'xrandr', uses: [3, 6, 10, 11] },
+  { pkg: 'xinput', uses: [3, 6, 10, 11] },
+  { pkg: 'setxkbmap', uses: [3, 6, 10, 11] },
+  { pkg: 'xcursorgen', uses: [7] },
+  { pkg: 'vim +clientserver', uses: [4, 5, 14] },
+  { pkg: 'xprop', uses: [12] },
+  { pkg: 'xwininfo', uses: [12] },
+  { pkg: 'picom / compton', uses: [12] },
+  { pkg: 'oneko', uses: [15] }
+];
+
+const UI = {
+  copied: 'Copié',
+  copy: 'Copier',
+  announceCopied: 'Commande copiée dans le presse-papiers.',
+  announceFail: 'Copie impossible : sélectionnez la commande à la main.',
+  count: (a, b) => a + (a > 1 ? ' pièces' : ' pièce') + ' sur ' + b,
+  empty: 'Aucune pièce ne correspond. Essayez « rotate », « vim » ou « souris ».',
+  required: 'requis',
+  notRequired: 'non requis',
+  prank: 'Module'
+};
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const pad = n => String(n).padStart(2, '0');
+const plain = s => s.replace(/<[^>]+>/g, '');
+const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+/* ==== Screen-reader announcements ==== */
+const live = $('#live');
+function announce(msg) {
+  live.textContent = '';
+  setTimeout(() => { live.textContent = msg; }, 40);
+}
+
+/* ==== Clipboard (async API with textarea fallback) ==== */
+function legacyCopy(text) {
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    ta.remove();
+    ok ? resolve() : reject(new Error('copy failed'));
+  });
+}
+function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
+  }
+  return legacyCopy(text);
+}
+document.addEventListener('click', ev => {
+  const btn = ev.target.closest('[data-copy-from], [data-copy]');
+  if (!btn) return;
+  ev.stopPropagation();
+  const text = btn.dataset.copy || $('#' + btn.dataset.copyFrom).textContent.trim();
+  copyText(text).then(() => {
+    btn.dataset.state = 'done';
+    btn.textContent = UI.copied;
+    announce(UI.announceCopied);
+    clearTimeout(btn._t);
+    btn._t = setTimeout(() => { btn.dataset.state = ''; btn.textContent = UI.copy; }, 1800);
+  }).catch(() => {
+    announce(UI.announceFail);
+    const src = btn.dataset.copyFrom && $('#' + btn.dataset.copyFrom);
+    if (src) { const r = document.createRange(); r.selectNodeContents(src); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+}, true);
+
+/* ==== FIGURES: tiny SVG helpers, then one drawing per prank (viewBox 360 x 190) ==== */
+const R = (x, y, w, h, c = 's', rx = 0) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"${rx ? ` rx="${rx}"` : ''} class="${c}"/>`;
+const L = (x1, y1, x2, y2, c = 's') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${c}"/>`;
+const P = (d, c = 's') => `<path d="${d}" class="${c}"/>`;
+const C = (x, y, r, c = 's') => `<circle cx="${x}" cy="${y}" r="${r}" class="${c}"/>`;
+const E = (x, y, rx, ry, c = 's') => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" class="${c}"/>`;
+const T = (x, y, s, c = '', a = 'start') => `<text x="${x}" y="${y}" text-anchor="${a}" class="t ${c}">${s}</text>`;
+const AR = (x1, y1, x2, y2, c = '') => L(x1, y1, x2, y2, `s ar ${c}`);
+const CUR = (x, y, k = 1) => `<path d="M0 0V17L4.500 13 7.500 20 10.500 18.500 7.700 12H13Z" transform="translate(${x} ${y}) scale(${k})" class="s p c"/>`;
+const MON = (x, y, w, h) => { const m = x + w / 2; return R(x, y, w, h, 's p', 3) + R(x + 7, y + 7, w - 14, h - 14, 's h') + L(m, y + h, m, y + h + 10) + L(m - 22, y + h + 10, m + 22, y + h + 10); };
+const WIN = (x, y, w, h, t = '') => R(x, y, w, h, 's p') + L(x, y + 14, x + w, y + 14) + R(x + 4, y + 4, 6, 6, 's h') + R(x + 13, y + 4, 6, 6, 's h') + (t ? T(x + w - 6, y + 11, t, '', 'end') : '');
+const MOUSE = (x, y) => R(x, y, 44, 72, 's p', 20) + L(x, y + 28, x + 44, y + 28) + L(x + 22, y, x + 22, y + 28);
+const BARS = (x, y, lens, gap, c, right) => lens.map((n, i) => right ? L(right - n, y + i * gap, right, y + i * gap, c) : L(x, y + i * gap, x + n, y + i * gap, c)).join('');
+
+const FIGS = {
+  'swap-commands': () => {
+    const rows = [['ls', 'cd'], ['cd', 'ls'], ['cat', 'tac']];
+    return T(60, 22, 'tapé', '', 'middle') + T(300, 22, 'exécuté', '', 'middle') + rows.map((q, i) => {
+      const y = 32 + i * 50;
+      return R(20, y, 80, 34, 's p') + T(60, y + 22, q[0], 'b', 'middle') + T(180, y + 12, 'devient', '', 'middle') + AR(106, y + 17, 254, y + 17) + R(260, y, 80, 34, 's p') + T(300, y + 22, q[1], 'b', 'middle');
+    }).join('');
+  },
+  'swap-apps': () => WIN(24, 40, 110, 84) + T(79, 88, 'vim', 'b', 'middle') + WIN(226, 40, 110, 84) + T(281, 88, 'firefox', 'b', 'middle')
+    + P('M138 62C170 28 190 28 222 62', 's ar') + P('M222 104C190 138 170 138 138 104', 's ar') + T(180, 172, 'SWAP_APPS="vim:firefox"', '', 'middle'),
+  'dvorak': () => {
+    const a = 'QWERTY'.split(''), b = ["'", ',', '.', 'P', 'Y', 'F'];
+    return T(24, 24, 'avant', '') + T(24, 168, 'DVORAK', 'b') + a.map((k, i) => R(24 + i * 54, 32, 40, 36, 's p') + T(44 + i * 54, 56, k, 'b', 'middle') + AR(44 + i * 54, 72, 44 + i * 54, 108, 'd') + R(24 + i * 54, 112, 40, 36, 's p') + T(44 + i * 54, 136, b[i], 'b r', 'middle')).join('');
+  },
+  'vim-red': () => WIN(40, 20, 280, 150, 'vim') + BARS(60, 50, [150, 200, 110, 170], 18, 's bar r') + [4, 5].map(i => T(52, 54 + i * 18, '~', 'r', 'middle')).join('') + T(310, 162, 'tout le texte : rouge', 'r', 'end'),
+  'vim-mirror': () => WIN(20, 34, 140, 110) + BARS(32, 64, [80, 100, 60], 18, 's bar') + T(32, 120, '~') + T(32, 136, '~')
+    + WIN(200, 34, 140, 110) + BARS(0, 64, [80, 100, 60], 18, 's bar', 328) + T(328, 120, '~', '', 'end') + T(328, 136, '~', '', 'end')
+    + L(180, 26, 180, 154, 's d h') + AR(124, 20, 236, 20) + T(180, 12, 'miroir', '', 'middle'),
+  'rotate': () => T(40, 22, 'avant', '', 'middle') + P('M26 36V66M26 36H46M26 50H40', 's bar') + '<g transform="rotate(180 190 93)">' + MON(120, 38, 140, 100) + P('M160 62V112M160 62H200M160 86H190', 's bar') + '</g>'
+    + P('M284 46A56 56 0 0 1 284 140', 's ar r') + T(316, 98, '180°', 'b r') + T(190, 176, 'après', '', 'middle'),
+  'cursor-image': () => CUR(40, 56, 2) + T(53, 120, 'curseur', '', 'middle') + AR(96, 84, 178, 84) + R(196, 40, 110, 86, 's p') + C(228, 66, 9) + P('M196 126L236 84L260 108L278 92L306 126', 's')
+    + P('M188 40H204M196 32V48', 's r') + T(214, 28, 'pointe', 'r') + T(251, 148, 'chat.png', 'b', 'middle'),
+  'cursor-big': () => CUR(50, 80, 1.3) + T(58, 130, 'normal', '', 'middle') + CUR(150, 20, 7) + L(270, 20, 270, 160, 's h') + L(264, 20, 276, 20) + L(264, 160, 276, 160) + T(282, 94, 'taille 96'),
+  'lock-shot': () => MON(90, 22, 180, 112) + WIN(104, 40, 76, 46) + WIN(190, 66, 64, 52)
+    + P('M167 82V70A13 13 0 0 1 193 70V82', 's bar') + R(158, 80, 44, 34, 's p') + C(180, 95, 4, 's k') + L(180, 99, 180, 107, 's bar')
+    + T(180, 166, 'maim → i3lock', '', 'middle') + T(180, 184, 'À LANCER EN DERNIER', 'r b', 'middle'),
+  'mouse-slow': () => MOUSE(24, 50) + T(46, 140, 'souris', '', 'middle') + T(100, 60, 'main : 100 %') + AR(100, 70, 340, 70) + T(100, 108, 'curseur : 15 %', 'r') + AR(100, 120, 148, 120, 'r bar'),
+  'mouse-invert': () => MOUSE(24, 60) + T(46, 150, 'souris', '', 'middle') + AR(90, 112, 142, 66) + T(98, 134, 'main') + MON(190, 30, 150, 96)
+    + AR(300, 58, 236, 100, 'r bar') + T(206, 58, 'curseur', 'r') + T(180, 184, '(x, y) → (−x, −y)', 'b', 'middle'),
+  'opacity': () => '<g class="gh">' + WIN(30, 34, 150, 96) + WIN(120, 64, 150, 96) + WIN(200, 28, 130, 90) + '</g>' + T(180, 184, 'opacité : 20 %', 'b', 'middle'),
+  'shutup': () => WIN(40, 26, 280, 120, 'bash') + T(54, 64, '$ shutdown', 'b') + T(54, 86, 'shutup', 'b r') + T(54, 118, '$ sudo shutdown') + T(54, 134, '(fonctionne toujours)'),
+  'vim-light': () => WIN(24, 34, 130, 110) + R(25, 49, 128, 94, 'k') + BARS(38, 70, [70, 90, 56], 18, 's bar pp') + WIN(206, 34, 130, 110) + BARS(220, 70, [70, 90, 56], 18, 's bar')
+    + AR(160, 90, 200, 90) + T(89, 168, 'sombre', '', 'middle') + T(271, 168, 'clair', '', 'middle'),
+  'oneko': () => E(100, 124, 30, 16, 's p') + C(138, 104, 14, 's p') + P('M128 94L130 78L140 91Z', 's p') + P('M142 91L152 78L151 96Z', 's p') + C(133, 103, 1.8, 's k') + C(143, 103, 1.8, 's k')
+    + L(150, 108, 164, 105) + L(150, 111, 164, 113) + L(84, 138, 84, 150) + L(112, 138, 112, 150) + P('M72 120C56 110 58 88 72 92', 's bar')
+    + P('M172 112C204 152 250 142 280 110', 's d ar') + CUR(284, 98, 1.6) + T(180, 178, 'oneko', 'b', 'middle'),
+  'terminal-shutdown': () => WIN(30, 18, 300, 96, 'bash') + T(44, 56, 'Arrêt du système dans 5 s...', 'b') + T(44, 82, '$ _')
+    + [5, 4, 3, 2, 1].map((n, i) => R(30 + i * 46, 130, 38, 34, 's p') + T(49 + i * 46, 153, n, 'b', 'middle')).join('') + AR(262, 147, 290, 147) + T(296, 152, 'FAUX', 'b r')
+};
+
+function figureSvg(p) {
+  const id = 'ft-' + p.n;
+  return `<svg class="fig" viewBox="0 0 360 190" role="img" aria-labelledby="${id}"><title id="${id}">Fig. ${p.n} : ${p.alt}</title>${FIGS[p.name]()}</svg>`;
+}
+
+/* ==== PARTS LIST: render, filter, expand ==== */
+const partsBody = $('#parts-body');
+const partsCount = $('#parts-count');
+let activeClass = 'all';
+let query = '';
+
+partsBody.innerHTML = PRANKS.map(p => {
+  const q = fold(p.name + ' ' + plain(p.effect) + ' ' + CLASSES[p.cls].label);
+  const anti = p.undo
+    ? `<code>${p.undo}</code><button type="button" class="copy mini" data-copy="./prank.sh ${p.undo}" aria-label="Copier l'antidote : ./prank.sh ${p.undo}">Copier</button>`
+    : p.undoText;
+  return `<tr class="part" id="part-${p.name}" data-n="${p.n}" data-cls="${p.cls}" data-q="${q}" data-open="0">
+    <td class="n" data-label="N°">${pad(p.n)}</td>
+    <th scope="row" class="ref"><button type="button" class="toggle" aria-expanded="false" aria-controls="plate-${p.name}"><span class="plus" aria-hidden="true">+</span><code>${p.name}</code></button></th>
+    <td class="eff">${p.effect}</td>
+    <td class="cls" data-label="Classe"><span class="cl cl-${p.cls}" title="${CLASSES[p.cls].long}">${p.cls}</span><span class="sr-only"> ${CLASSES[p.cls].long}</span></td>
+    <td class="anti" data-label="Antidote">${anti}</td>
+  </tr>
+  <tr class="plate" id="plate-${p.name}" hidden><td colspan="5"></td></tr>`;
+}).join('') + `<tr id="parts-empty" hidden><td colspan="5">${UI.empty}</td></tr>`;
+
+function plateHtml(p) {
+  return `<div class="plate-in"><div class="plate-cap"><b>Fig. ${p.n}</b>, ${p.cap}.<p>${p.note}</p></div>${figureSvg(p)}</div>`;
+}
+function togglePart(tr, force) {
+  const plate = tr.nextElementSibling;
+  const open = typeof force === 'boolean' ? force : tr.dataset.open !== '1';
+  const btn = $('.toggle', tr);
+  tr.dataset.open = open ? '1' : '0';
+  btn.setAttribute('aria-expanded', String(open));
+  $('.plus', btn).textContent = open ? '−' : '+';
+  if (open && !plate.dataset.built) {
+    plate.firstElementChild.innerHTML = plateHtml(PRANKS[Number(tr.dataset.n) - 1]);
+    plate.dataset.built = '1';
+  }
+  plate.hidden = !open || tr.hidden;
+}
+function applyFilters() {
+  const q = fold(query.trim());
+  let shown = 0;
+  $$('tr.part', partsBody).forEach(tr => {
+    const ok = (activeClass === 'all' || tr.dataset.cls === activeClass) && (!q || tr.dataset.q.includes(q));
+    tr.hidden = !ok;
+    tr.nextElementSibling.hidden = !(ok && tr.dataset.open === '1');
+    if (ok) shown++;
+  });
+  $('#parts-empty').hidden = shown > 0;
+  partsCount.textContent = UI.count(shown, PRANKS.length);
+}
+partsBody.addEventListener('click', ev => {
+  if (ev.target.closest('.copy')) return;
+  const tr = ev.target.closest('tr.part');
+  if (tr) togglePart(tr);
+});
+$('#parts-q').addEventListener('input', ev => { query = ev.target.value; applyFilters(); });
+$('#parts-filters').addEventListener('click', ev => {
+  const b = ev.target.closest('button');
+  if (!b) return;
+  activeClass = b.dataset.f;
+  $$('#parts-filters button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  applyFilters();
+});
+applyFilters();
+function openFromHash() {
+  if (location.hash.indexOf('#part-') !== 0) return;
+  const tr = document.getElementById(location.hash.slice(1));
+  if (!tr || !tr.classList.contains('part')) return;
+  if (tr.hidden) {
+    activeClass = 'all'; query = ''; $('#parts-q').value = '';
+    $$('#parts-filters button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.f === 'all')));
+    applyFilters();
+  }
+  togglePart(tr, true);
+  tr.scrollIntoView();
+}
+openFromHash();
+addEventListener('hashchange', openFromHash);
+
+/* ==== MATRIX: packages x pranks ==== */
+(function buildMatrix() {
+  const wrap = $('#matrix-wrap');
+  const head = PRANKS.map((p, c) => `<th scope="col" class="col" data-c="${c}"><span>${pad(p.n)} ${p.name}</span></th>`).join('');
+  const rows = PACKAGES.map((k, r) => `<tr><th scope="row" class="row" data-r="${r}"><code>${k.pkg}</code></th>${PRANKS.map((p, c) =>
+    k.uses.indexOf(p.n) >= 0
+      ? `<td data-r="${r}" data-c="${c}"><span aria-hidden="true">●</span><span class="sr-only">${UI.required}</span></td>`
+      : `<td data-r="${r}" data-c="${c}"><span class="sr-only">${UI.notRequired}</span></td>`).join('')}</tr>`).join('');
+  wrap.innerHTML = `<table class="matrix"><caption class="sr-only">Matrice paquets par modules : une case pleine signifie que le paquet est requis par le module.</caption><thead><tr><th scope="col"><span class="sr-only">Paquet</span></th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+  const table = $('.matrix', wrap);
+  const clear = () => $$('.hl-r, .hl-c', table).forEach(el => el.classList.remove('hl-r', 'hl-c'));
+  const mark = ev => {
+    const el = ev.target.closest('[data-r], [data-c]');
+    clear();
+    if (!el) return;
+    if (el.dataset.r !== undefined) $$('[data-r="' + el.dataset.r + '"]', table).forEach(x => x.classList.add('hl-r'));
+    if (el.dataset.c !== undefined) $$('[data-c="' + el.dataset.c + '"]', table).forEach(x => x.classList.add('hl-c'));
+  };
+  table.addEventListener('mouseover', mark);
+  table.addEventListener('focusin', mark);
+  table.addEventListener('mouseleave', clear);
+  table.addEventListener('focusout', clear);
+})();
+
+/* ==== TABS: highlight the current section ==== */
+(function tabs() {
+  const links = {};
+  $$('#tab-list a').forEach(a => { links[a.dataset.for] = a; });
+  const secs = $$('[data-sec]');
+  const nav = $('.tabs ol');
+  let current = '';
+  const stripMode = () => matchMedia('(max-width: 899px)').matches && nav.scrollWidth > nav.clientWidth;
+  /* a keyboard-focused tab must be fully visible and clear of the arrow marker */
+  nav.addEventListener('focusin', ev => {
+    const a = ev.target.closest('a');
+    if (!a || !stripMode()) return;
+    const r = a.getBoundingClientRect(), n = nav.getBoundingClientRect();
+    if (r.left < n.left + 4) nav.scrollLeft += r.left - n.left - 4;
+    else if (r.right > n.right - 44) nav.scrollLeft += r.right - (n.right - 44);
+  });
+  function setCurrent(id) {
+    if (!id || id === current || !links[id]) return;
+    current = id;
+    Object.keys(links).forEach(k => {
+      if (k === id) links[k].setAttribute('aria-current', 'true'); else links[k].removeAttribute('aria-current');
+    });
+    if (stripMode()) {
+      const r = links[id].getBoundingClientRect(), n = nav.getBoundingClientRect();
+      nav.scrollLeft += (r.left + r.width / 2) - (n.left + (n.width - 40) / 2);
+    }
+  }
+  const tabsEl = $('.tabs');
+  const moreCheck = () => tabsEl.classList.toggle('more', nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 2);
+  nav.addEventListener('scroll', moreCheck, { passive: true });
+  addEventListener('resize', moreCheck);
+  moreCheck();
+  setCurrent('cover');
+  if (!('IntersectionObserver' in window)) return;
+  const inBand = new Set();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) inBand.add(e.target); else inBand.delete(e.target); });
+    const hit = secs.filter(s => inBand.has(s)).pop();
+    if (hit) setCurrent(hit.id);
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  secs.forEach(s => io.observe(s));
+  addEventListener('scroll', () => {
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) setCurrent('colophon');
+  }, { passive: true });
+})();
+})();
+</script>
+</body>
+</html>
