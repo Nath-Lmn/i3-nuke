@@ -1,0 +1,11 @@
+{
+  "name": "i3-nuke-site-qa",
+  "private": true,
+  "description": "Non-interactive QA harness for ../../index.html",
+  "scripts": { "test": "node qa.js" },
+  "devDependencies": {
+    "axe-core": "4.10.2",
+    "html-validate": "9.5.5",
+    "puppeteer-core": "24.10.0"
+  }
+}
