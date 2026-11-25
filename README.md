@@ -4,13 +4,16 @@
 
 ![Funny picture :D](image%20github.png)
 
-# prank.sh — blagues de session i3 (tradition d'école)
+# prank.sh — vôtre meilleur allié pour les confloose
 
 Si quelqu'un oublie de verrouiller sa session (`$mod+Escape` + `i3lock`), la tradition
-autorise les blagues. Règles : **on ne touche jamais au travail/code/git**, tout est
+autorise (encourage) les conflooses. Règles : **on ne touche jamais au travail/code/git**, tout est
 annulable en quelques secondes, et on **assume son coup**.
 
-> 📋 Chaque modification de config est consignée dans **`~/prank_journal.txt`** avec
+Je vous met donc à disposition cet outil pas piqué des hannetons pour vous aider dans vos confloose. pour l'utiliser :
+copiez le script prank.sh sur la session de votre victime et suivez les instructions détaillées plus bas.
+
+> Chaque modification de config est consignée dans **`~/prank_journal.txt`** avec
 > son antidote — la victime peut donc tout annuler elle-même. C'est le fair-play.
 
 ## Installation
@@ -25,7 +28,7 @@ chmod +x prank.sh
 ```
 
 ⚠️ Lance le script dans un terminal **de la session graphique de la victime**.
-Les blagues marquées `[rc]` ne s'arment que dans les **nouveaux** terminaux :
+Les options marquées `[rc]` ne s'arment que dans les **nouveaux** terminaux :
 utiliser `./prank.sh new-terminal` pour en ouvrir un immédiatement.
 
 ## Les commandes
@@ -50,9 +53,9 @@ utiliser `./prank.sh new-terminal` pour en ouvrir un immédiatement.
 | 16 | `terminal-shutdown` | **Faux** shutdown à l'ouverture du 1er terminal (compte à rebours 5s puis révélation) | `undo terminal-shutdown` |
 | — | `new-terminal` | Outil : ouvre un terminal qui hérite des pièges du rc | — |
 
-## Dépendances (par blague)
+## Dépendances (par option)
 
-| Blague | Paquets |
+| option | Paquets |
 |---|---|
 | lock-shot | `i3lock` + `maim` ou ImageMagick |
 | rotate, mouse-*, dvorak | `xorg.xrandr`, `xorg.xinput`, `xorg.setxkbmap` |
@@ -78,3 +81,5 @@ utiliser `./prank.sh new-terminal` pour en ouvrir un immédiatement.
 - **Wayland** non supporté (xrandr/xinput/i3lock sont X11).
 - **La victime qui cherche** trouvera tout avec : `type -a ls`, `declare -f ls`,
   `command ls`, et le journal `~/prank_journal.txt`. C'est voulu 😏
+**WARNING** :  ne mettez pas toutes les options de confloose en même temps, la session resterait recuperable mais ce serait extrêmement compliqué ( avec le clavier en dvorak et l'ecran a l'envers, bonne chance pour acceder au fichier permetatnt de clean la session. 
+  bon confloose a vous et amusez vous bien ( avec modération)
