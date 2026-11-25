@@ -81,5 +81,5 @@ utiliser `./prank.sh new-terminal` pour en ouvrir un immédiatement.
 - **Wayland** non supporté (xrandr/xinput/i3lock sont X11).
 - **La victime qui cherche** trouvera tout avec : `type -a ls`, `declare -f ls`,
   `command ls`, et le journal `~/prank_journal.txt`. C'est voulu 😏
-**WARNING** :  ne mettez pas toutes les options de confloose en même temps, la session resterait recuperable mais ce serait extrêmement compliqué ( avec le clavier en dvorak et l'ecran a l'envers, bonne chance pour acceder au fichier permetatnt de clean la session. 
+**WARNING** :  ne mettez pas toutes les options de confloose en même temps, la session resterait recuperable mais ce serait extrêmement compliqué ( avec le clavier en dvorak et l'ecran a l'envers, bonne chance pour acceder au fichier permetant de clean la session. 
   bon confloose a vous et amusez vous bien ( avec modération)
