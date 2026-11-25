@@ -82,4 +82,6 @@ utiliser `./prank.sh new-terminal` pour en ouvrir un immédiatement.
 - **La victime qui cherche** trouvera tout avec : `type -a ls`, `declare -f ls`,
   `command ls`, et le journal `~/prank_journal.txt`. C'est voulu 😏
 **WARNING** :  ne mettez pas toutes les options de confloose en même temps, la session resterait recuperable mais ce serait extrêmement compliqué ( avec le clavier en dvorak et l'ecran a l'envers, bonne chance pour acceder au fichier permetant de clean la session. 
-  bon confloose a vous et amusez vous bien ( avec modération)
+  bon confloose a vous et amusez vous bien ( avec modération).D
+
+  Btw si vous avez des idées de *blagounettes* à rajouter dans la liste, contactez moi. 
