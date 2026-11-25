@@ -4,9 +4,9 @@
 
 ![Funny picture :D](image%20github.png)
 
-# prank.sh — vôtre meilleur allié pour les confloose
+# prank.sh — vôtre meilleur allié pour les confloose à Epita
 
-Si quelqu'un oublie de verrouiller sa session (`$mod+Escape` + `i3lock`), la tradition
+Si quelqu'un oublie de verrouiller sa session (`$mod+Escape` + `i3lock`), la tradition d'Epita
 autorise (encourage) les conflooses. Règles : **on ne touche jamais au travail/code/git**, tout est
 annulable en quelques secondes, et on **assume son coup**.
 
